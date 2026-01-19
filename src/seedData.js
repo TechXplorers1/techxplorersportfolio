@@ -1,7 +1,7 @@
 export const initialServices = [
     // Identity Services
     {
-        category: "identity",
+
         title: "THE SMART \n RESUME.",
         description: "We reinvent your resume using key technical skills from the Coach template, arranged in a fresh, unique layout to ensure you look unique to recruiters.",
         price: "$30",
@@ -10,7 +10,7 @@ export const initialServices = [
         highlight: false
     },
     {
-        category: "identity",
+
         title: "ONLINE \n PORTFOLIO.",
         description: "A personalized professional website with a custom signed page featuring your name. Essential for leaving a lasting impact on recruiters.",
         price: "$200",
@@ -19,7 +19,7 @@ export const initialServices = [
         highlight: false
     },
     {
-        category: "identity",
+
         title: "Job \n Applications.",
         description: "Frees up your time to focus on interviews and skill-building. Ideal for busy professionals or parents working 9-to-5.",
         price: "Contact Us",
@@ -29,7 +29,7 @@ export const initialServices = [
     },
     // Engineering Services
     {
-        category: "engineering",
+
         title: "Software \n Development.",
         description: "Custom-priced development for responsive, secure, and scalable websites and mobile apps tailored to your business vision.",
         price: "Custom",
@@ -38,7 +38,7 @@ export const initialServices = [
         highlight: false
     },
     {
-        category: "engineering",
+
         title: "Digital \n Marketing.",
         description: "Grow your online presence through SEO, Content Marketing, Google Ads, and social strategy branding.",
         price: "Custom",
@@ -47,7 +47,7 @@ export const initialServices = [
         highlight: false
     },
     {
-        category: "engineering",
+
         title: "Exam \n Support.",
         description: "Preparation for professional certifications. We provide the roadmap to ensure you pass on your first attempt.",
         price: "Custom",

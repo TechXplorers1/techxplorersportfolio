@@ -17,7 +17,6 @@ const AdminDashboard = () => {
         title: '',
         description: '',
         price: '',
-        category: 'identity', // identity, engineering
         features: '',
         icon: 'Star',
         highlight: false
@@ -62,7 +61,6 @@ const AdminDashboard = () => {
             title: '',
             description: '',
             price: '',
-            category: 'identity',
             features: '',
             icon: 'Star',
             highlight: false
@@ -76,7 +74,7 @@ const AdminDashboard = () => {
             ...formData,
             features: typeof formData.features === 'string'
                 ? formData.features.split(',').map(f => f.trim()).filter(f => f)
-                : formData.features
+                : (formData.features || [])
         };
 
         try {
@@ -91,15 +89,16 @@ const AdminDashboard = () => {
             resetForm();
         } catch (error) {
             console.error("Error saving service:", error);
-            alert("Error saving service");
+            alert("Error saving service: " + error.message);
         }
     };
 
     const handleEdit = (service) => {
         setEditingId(service.id);
+        const features = service.features || '';
         setFormData({
             ...service,
-            features: Array.isArray(service.features) ? service.features.join(', ') : service.features
+            features: Array.isArray(features) ? features.join(', ') : features
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -166,18 +165,7 @@ const AdminDashboard = () => {
                             </h2>
 
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Category</label>
-                                    <select
-                                        name="category"
-                                        value={formData.category}
-                                        onChange={handleInputChange}
-                                        className="w-full p-2 border border-slate-200 rounded-lg text-sm font-medium focus:border-indigo-500 focus:outline-none"
-                                    >
-                                        <option value="identity">Professional Identity (Identity)</option>
-                                        <option value="engineering">Engineering (Product)</option>
-                                    </select>
-                                </div>
+
 
                                 <div>
                                     <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Title</label>
@@ -280,25 +268,13 @@ const AdminDashboard = () => {
                             <div className="text-center py-12 text-slate-400 font-medium">Loading services...</div>
                         ) : (
                             <>
-                                {/* Identity Section */}
                                 <div>
-                                    <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-xs mb-4 border-b border-indigo-100 pb-2">Professional Identity Services</h3>
+                                    <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-xs mb-4 border-b border-indigo-100 pb-2">All Services</h3>
                                     <div className="space-y-4">
-                                        {services.filter(s => s.category === 'identity').map(service => (
+                                        {services.map(service => (
                                             <ServiceItem key={service.id} service={service} onEdit={handleEdit} onDelete={handleDelete} />
                                         ))}
-                                        {services.filter(s => s.category === 'identity').length === 0 && <p className="text-sm text-slate-400 italic">No services added yet.</p>}
-                                    </div>
-                                </div>
-
-                                {/* Engineering Section */}
-                                <div>
-                                    <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-xs mb-4 border-b border-indigo-100 pb-2">Engineering Services</h3>
-                                    <div className="space-y-4">
-                                        {services.filter(s => s.category === 'engineering').map(service => (
-                                            <ServiceItem key={service.id} service={service} onEdit={handleEdit} onDelete={handleDelete} />
-                                        ))}
-                                        {services.filter(s => s.category === 'engineering').length === 0 && <p className="text-sm text-slate-400 italic">No services added yet.</p>}
+                                        {services.length === 0 && <p className="text-sm text-slate-400 italic">No services added yet.</p>}
                                     </div>
                                 </div>
                             </>
