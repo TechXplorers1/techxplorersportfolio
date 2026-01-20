@@ -4,8 +4,8 @@ import { database, auth } from '../firebase';
 import { ref, push, set, remove, update, onValue } from 'firebase/database';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Trash2, Edit2, LogOut, Save, X, LayoutDashboard, Database } from 'lucide-react';
-import { initialServices } from '../seedData';
+import { Plus, Trash2, Edit2, LogOut, Save, X, LayoutDashboard } from 'lucide-react';
+
 
 const AdminDashboard = () => {
     const [services, setServices] = useState([]);
@@ -110,22 +110,7 @@ const AdminDashboard = () => {
         }
     };
 
-    const handleSeedData = async () => {
-        if (window.confirm("This will add initial data to your database. Continue?")) {
-            try {
-                const servicesRef = ref(database, 'services');
 
-                for (const service of initialServices) {
-                    const newServiceRef = push(servicesRef);
-                    await set(newServiceRef, service);
-                }
-                alert("Database seeded successfully!");
-            } catch (error) {
-                console.error("Error seeding database:", error);
-                alert("Failed to seed database: " + error.message);
-            }
-        }
-    };
 
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
@@ -137,12 +122,6 @@ const AdminDashboard = () => {
                         <h1 className="text-xl font-black uppercase tracking-widest">Admin Dashboard</h1>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button
-                            onClick={handleSeedData}
-                            className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-400 hover:text-emerald-300 transition"
-                        >
-                            <Database size={16} /> Seed Data
-                        </button>
                         <button
                             onClick={handleLogout}
                             className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-indigo-400 transition"
@@ -216,6 +195,23 @@ const AdminDashboard = () => {
                                             className="w-full p-2 border border-slate-200 rounded-lg text-sm font-medium focus:border-indigo-500 focus:outline-none"
                                         />
                                     </div>
+                                </div>
+
+                                {/* Image Selection Dropdown */}
+                                <div>
+                                    <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Associated Image</label>
+                                    <select
+                                        name="imagePath"
+                                        value={formData.imagePath}
+                                        onChange={handleInputChange}
+                                        className="w-full p-2 border border-slate-200 rounded-lg text-sm font-medium focus:border-indigo-500 focus:outline-none"
+                                    >
+                                        <option value="">-- No Image Selected --</option>
+                                        {Object.keys(import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true })).map((path) => {
+                                            const filename = path.split('/').pop();
+                                            return <option key={filename} value={filename}>{filename}</option>;
+                                        })}
+                                    </select>
                                 </div>
 
                                 <div>
