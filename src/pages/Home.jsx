@@ -117,7 +117,7 @@ const Home = () => {
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#F4F4F4] text-slate-500 p-4 text-center">
                 <h3 className="text-xl font-bold text-slate-800 mb-2">Something went wrong</h3>
                 <p className="text-red-500 mb-4">{loadingError}</p>
-                <p className="text-sm mb-6 max-w-md">Ensure your Firebase configuration in <code>src/firebase.js</code> is correct and Firestore Database is enabled in the Firebase Console.</p>
+                <p className="text-sm mb-6 max-w-md">Ensure your Firebase configuration in <code>src/firebase.js</code> is correct and Realtime Database is enabled in the Firebase Console.</p>
                 <button
                     onClick={() => window.location.reload()}
                     className="bg-indigo-600 text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-indigo-700 transition"
