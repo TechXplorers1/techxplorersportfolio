@@ -13,7 +13,7 @@ const IconMap = {
     FileText, Globe, Briefcase, Linkedin, ShieldCheck,
     Code, Rocket, Users, CheckCircle, ArrowRight,
     Terminal, Monitor, Mail, ChevronRight, Play, Star,
-    Cpu, Award
+    Cpu, Award, X
 };
 
 const DynamicIcon = ({ name, className, size = 24 }) => {
@@ -46,7 +46,7 @@ const imageMap = Object.keys(imagesGlob).reduce((acc, path) => {
 const galleryImages = Object.values(imageMap);
 
 const Home = () => {
-    const WHATSAPP_NUMBER = "9618108329"; // TODO: Replace with actual number
+    const WHATSAPP_NUMBER = "919052990765";
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingError, setLoadingError] = useState(null);
@@ -138,7 +138,7 @@ const Home = () => {
                     {/* LEFT: Content */}
                     <div className="flex-1 p-8 py-12 md:p-16 lg:p-20 flex flex-col justify-between z-10 bg-white">
                         <div>
-                            <div className="text-indigo-600 font-black tracking-widest uppercase text-xs mb-8">Service Portfolio // 2025</div>
+                            <div className="text-indigo-600 font-black tracking-widest uppercase text-xs mb-8">Service Portfolio // 2026</div>
                             <h1 className="text-5xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-none mb-8 text-slate-900">
                                 TECH<br />XPLORERS.
                             </h1>
@@ -339,7 +339,7 @@ const Home = () => {
 
             <footer className="p-12 text-center bg-slate-900 border-t border-white/5">
                 <div className="font-black text-white uppercase tracking-tighter text-3xl mb-4">TechXplorers.</div>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.4em]">Precision Engineered Career Growth // 2025 Edition</p>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.4em]">Precision Engineered Career Growth // 2026 Edition</p>
 
             </footer>
 
@@ -363,6 +363,14 @@ const Home = () => {
                     {/* Modal Content */}
                     <div className="bg-white rounded-[2.5rem] w-full max-w-6xl max-h-[90vh] overflow-hidden shadow-2xl relative z-10 flex flex-col md:flex-row animate-fadeIn">
 
+                        {/* Close Button */}
+                        <button
+                            onClick={closeModal}
+                            className="absolute top-6 right-6 z-50 p-2 bg-white/80 backdrop-blur-md text-slate-600 hover:text-indigo-600 hover:bg-white rounded-full transition shadow-lg border border-slate-100"
+                        >
+                            <X size={24} />
+                        </button>
+
                         {/* Left: Image */}
                         <div className="flex-1 bg-slate-100 relative min-h-[40vh] md:min-h-[70vh] p-8 flex items-center justify-center">
                             {selectedService.imagePath && imageMap[selectedService.imagePath] && (
@@ -372,19 +380,10 @@ const Home = () => {
                                     className="w-full h-full object-contain drop-shadow-2xl"
                                 />
                             )}
-                            <button onClick={closeModal} className="absolute top-6 left-6 p-2 bg-white/50 backdrop-blur rounded-full hover:bg-white transition md:hidden">
-                                <X size={20} />
-                            </button>
                         </div>
 
                         {/* Right: Content */}
                         <div className="flex-1 p-8 md:p-12 lg:p-16 overflow-y-auto bg-white flex flex-col">
-                            <div className="flex justify-end mb-4 hidden md:block">
-                                <button onClick={closeModal} className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition">
-                                    <span className="sr-only">Close</span>
-                                    <X size={24} />
-                                </button>
-                            </div>
 
                             <div className="flex-1">
                                 <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 font-bold text-[10px] uppercase tracking-widest mb-6">
